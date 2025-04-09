@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-const PASSWORD = 'tucontraseña123'; // Cambia esto por tu contraseña segura
+const PASSWORD = 'lunakennedy'; // Cambia esto por tu contraseña segura
 
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
     header("Location: acceso_lista.html");
