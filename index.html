@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Estás invitado! 🎉</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url('fondo_cumple.avif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #ff6f61;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"], select {
+      padding: 10px;
+      width: 100%;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .thanks-message {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 ¡Estás invitado a mi cumpleaños! 🎂</h1>
+    <p>Vamos a celebrarlo el <strong>domingo 13 de abril a las 6:00 PM</strong>. ¿Vienes?</p>
+
+    <form id="rsvpForm">
+      <label for="nombre">Tu nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="asistencia">¿Vas a venir?</label>
+      <select id="asistencia" name="asistencia" required>
+        <option value="">--Selecciona una opción--</option>
+        <option value="Sí">Sí 🥳</option>
+        <option value="No">No 😢</option>
+      </select>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="thanks-message" id="mensajeGracias"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("rsvpForm");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const asistencia = document.getElementById("asistencia").value;
+
+      fetch("AQUI_VA_TU_URL_DEL_SCRIPT", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nombre: nombre,
+          asistencia: asistencia
+        })
+      });
+
+      const mensaje = document.getElementById("mensajeGracias");
+      mensaje.innerText = `¡Gracias, ${nombre}! Has respondido que ${asistencia.toLowerCase()} asistirás. 💌`;
+      mensaje.style.display = "block";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
